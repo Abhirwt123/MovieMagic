@@ -1,38 +1,38 @@
-.App {
-  text-align: center;
+@import '../node_modules/react-modal-video/scss/modal-video.scss';
+
+body::-webkit-scrollbar{
+    width: 6px;
+}
+body::-webkit-scrollbar-thumb{
+    background-color: #222831;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.slick-slide{
+    width: 210px !important;
+    margin-right: 15px;
+}
+.switch {
+    width: 88px;
+    height: 40px;
+    background-color: #76ABAE;
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 50px;
+    padding: 9px;
+    cursor: pointer;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  
+  .switch[data-isOn="true"] {
+    justify-content: flex-end;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .handle {
+    width: 23px;
+    height: 23px;
+    background-color: #222831;
+    border-radius: 40px;
   }
-}
+  .slick-arrow{
+    transform: scale(1.4);
+  }
