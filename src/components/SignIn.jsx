@@ -2,13 +2,19 @@ import React, { useEffect } from 'react';
 import { signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '../Firebase/Firebase';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { getUserData, isAuth } from '../Redux/AppSlice';
 
 const SignInForm = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
+    useEffect(() => {
+        const dataFromLocal = localStorage.getItem('userData');
+        if (dataFromLocal) {
+            navigate('/home');
+            dispatch(isAuth());
+        }
+    }, []);
     const handleGoogleAuth = () => {
         signInWithPopup(auth, provider)
             .then((data) => {
@@ -26,16 +32,10 @@ const SignInForm = () => {
             .catch((error) => console.log(error));
     };
 
-    useEffect(() => {
-        const dataFromLocal = localStorage.getItem('userData');
-        if (dataFromLocal) {
-            navigate('/home');
-        }
-    }, [navigate]);
 
     return (
         <div className="flex justify-center items-center h-screen w-5/12 m-auto">
-            <form className="bg-[#FFE6E6] p-8 shadow-md rounded-md w-full">
+            <form className="bg-[#76ABAE] p-8 shadow-md rounded-md w-full">
                 <h2 className="text-2xl font-bold mb-4 text-center">Sign In</h2>
 
 

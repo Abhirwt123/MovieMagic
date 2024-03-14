@@ -4,7 +4,7 @@ import SliderComp from './Slider';
 import MovieCard from './MovieCard';
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from 'react-redux';
-import { isPopSwitch, isSwitch } from '../Redux/AppSlice';
+import { isPopSwitch} from '../Redux/AppSlice';
 
 const PopularMovies = () => {
     const [popularMovies, setPopularMovies] = useState();

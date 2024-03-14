@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const AppSlice = createSlice({
     name: 'app',
     initialState: {
-        isUserAuthorized:true,
+        isUserAuthorized:false,
         userData:[],
         isPopularOn:false,
         isLatestOn:false

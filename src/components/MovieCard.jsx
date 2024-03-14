@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 
 const MovieCard = ({ info }) => {
   const navigate =useNavigate();
@@ -7,7 +7,7 @@ const MovieCard = ({ info }) => {
      navigate(`/detail/${info.id}`)
   }
   return (
-    <div className="wrap" onClick={handelMovieDetail}>
+    <div className="wrap cursor-pointer" onClick={handelMovieDetail}>
       <div className="img-wrap w-52 h-80">
         <img src={`https://image.tmdb.org/t/p/w500//${info.poster_path}`} alt="movie" className='w-full h-full' />
       </div>

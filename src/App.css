@@ -3,10 +3,10 @@
 body::-webkit-scrollbar{
     width: 6px;
 }
+
 body::-webkit-scrollbar-thumb{
     background-color: #222831;
 }
-
 
 .slick-slide{
     width: 210px !important;
@@ -36,3 +36,6 @@ body::-webkit-scrollbar-thumb{
   .slick-arrow{
     transform: scale(1.4);
   }
+  .cast .slick-slide {
+    width: 155px !important;
+}
