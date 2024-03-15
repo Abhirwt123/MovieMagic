@@ -1,16 +1,18 @@
 import React from 'react'
-import { useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { DUMMY_MOVIE_POSTER } from '../utils/constant';
+import { CiBookmark } from "react-icons/ci";
+import { FaBookmark } from "react-icons/fa";
 
 const MovieCard = ({ info }) => {
-  const navigate =useNavigate();
-  const handelMovieDetail=()=>{
-     navigate(`/detail/${info.id}`)
+  const navigate = useNavigate();
+  const handelMovieDetail = () => {
+    navigate(`/detail/${info.id}`)
   }
   return (
     <div className="wrap cursor-pointer" onClick={handelMovieDetail}>
       <div className="img-wrap w-52 h-80">
-        <img src={info.poster_path?`https://image.tmdb.org/t/p/w500//${info.poster_path}`:DUMMY_MOVIE_POSTER} alt="movie" className='w-full h-full object-cover' />
+        <img src={info.poster_path ? `https://image.tmdb.org/t/p/w500//${info.poster_path}` : DUMMY_MOVIE_POSTER} alt="movie" className='w-full h-full object-cover' />
       </div>
       <div className="mov-data mt-2">
         <div className="flex gap-4 items-center text-white">
@@ -20,6 +22,10 @@ const MovieCard = ({ info }) => {
             <p className="date">{info.release_date ? info.release_date : info.first_air_date}</p>
           </div>
         </div>
+      </div>
+      <div className="markMovie">
+        <CiBookmark />
+        <FaBookmark />
       </div>
     </div>
   )
