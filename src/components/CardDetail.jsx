@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import Cast from './Cast';
 import ModalVideo from 'react-modal-video';
 import useTrailerKey from '../Hooks/Trailer';
-import { API_OPTIONS } from '../utils/constant';
+import { API_OPTIONS, DUMMY_MOVIE_POSTER } from '../utils/constant';
 
 const CardDetail = () => {
     const params = useParams();
@@ -42,7 +42,7 @@ const CardDetail = () => {
                     <div className='grid grid-cols-12 px-20 py-6 items-center'>
                         <div className="col-span-4">
                             <div className="img-wrap w-96">
-                                <img src={`https://image.tmdb.org/t/p/original/${poster_path}`} alt="movie" className='w-full rounded-lg' />
+                                <img src={poster_path?`https://image.tmdb.org/t/p/original/${poster_path}`:DUMMY_MOVIE_POSTER} alt="movie" className='w-full rounded-lg' />
                             </div>
                         </div>
                         <div className="col-span-7">

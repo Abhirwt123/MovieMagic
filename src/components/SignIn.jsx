@@ -39,7 +39,7 @@ const SignInForm = () => {
                 <h2 className="text-2xl font-bold mb-4 text-center">Sign In</h2>
 
 
-                <div className="mb-4">
+                {/* <div className="mb-4">
                     <label htmlFor="name" className="block text-sm font-medium text-gray-600">
                         Name
                     </label>
@@ -66,16 +66,16 @@ const SignInForm = () => {
                         id="password"
                         name="password"
                         className="mt-1 p-2 w-full border rounded-md" />
-                </div>
+                </div> */}
                 <div className="flex items-center justify-center mb-4 border rounded-lg gap-2 py-1 bg-zinc-100 cursor-pointer" onClick={handleGoogleAuth}>
                     <img className="w-8" src="https://www.google.com/images/hpp/ic_wahlberg_product_core_48.png8.png" alt="" />
                     <span>Sign In Using Google</span>
                 </div>
-                <button
+                {/* <button
                     type="submit"
                     className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">
                     Sign In
-                </button>
+                </button> */}
             </form>
         </div>
     );

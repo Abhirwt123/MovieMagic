@@ -6,7 +6,8 @@ const AppSlice = createSlice({
         isUserAuthorized:false,
         userData:[],
         isPopularOn:false,
-        isLatestOn:false
+        isLatestOn:false,
+        searchText:''
     },
     reducers: {
         isAuth: (state) => {
@@ -20,9 +21,12 @@ const AppSlice = createSlice({
         },
         isNewSwitch:(state)=>{
             state.isLatestOn=!state.isLatestOn;
+        },
+        getSearchQuery:(state,action)=>{
+             state.searchText=action.payload 
         }
     }
 });
 
-export const {isAuth,getUserData,isPopSwitch,isNewSwitch} =AppSlice.actions;
+export const {isAuth,getUserData,isPopSwitch,isNewSwitch,getSearchQuery} =AppSlice.actions;
 export default AppSlice.reducer;

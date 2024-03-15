@@ -1,15 +1,15 @@
 import React from 'react'
 import Header from './Header'
-import Banner from './Banner'
+import { Outlet } from 'react-router-dom'
 import VideoContainer from './VideoContainer'
-import Cast from './Cast'
+import MyList from './MyList'
 
 const Home = () => {
   return (
     <div>
-       <Header/>
-       <Banner/>
-       <VideoContainer/>
+      <Header />
+      <MyList/>
+      <VideoContainer />
     </div>
   )
 }

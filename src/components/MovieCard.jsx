@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate} from 'react-router-dom'
+import { DUMMY_MOVIE_POSTER } from '../utils/constant';
 
 const MovieCard = ({ info }) => {
   const navigate =useNavigate();
@@ -9,7 +10,7 @@ const MovieCard = ({ info }) => {
   return (
     <div className="wrap cursor-pointer" onClick={handelMovieDetail}>
       <div className="img-wrap w-52 h-80">
-        <img src={`https://image.tmdb.org/t/p/w500//${info.poster_path}`} alt="movie" className='w-full h-full' />
+        <img src={info.poster_path?`https://image.tmdb.org/t/p/w500//${info.poster_path}`:DUMMY_MOVIE_POSTER} alt="movie" className='w-full h-full object-cover' />
       </div>
       <div className="mov-data mt-2">
         <div className="flex gap-4 items-center text-white">
