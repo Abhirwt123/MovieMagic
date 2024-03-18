@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getDatabase, ref, get } from 'firebase/database';
 import { useDispatch } from 'react-redux';
+import { getFavMovie } from '../Redux/AppSlice';
 
 const YourComponent = () => {
   const [data, setData] = useState(null);
@@ -24,15 +25,8 @@ const YourComponent = () => {
     };
 
     fetchData();
-    dispatch(get)
+    dispatch(getFavMovie(data))
   }, []);
-
-
-  return (
-    <div>
-      {/* Render your data here */}
-    </div>
-  );
 };
 
 export default YourComponent;

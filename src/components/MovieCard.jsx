@@ -5,8 +5,10 @@ import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
 import { auth, database } from '../Firebase/Firebase';
 import { ref, set, push } from 'firebase/database';
+import { useSelector } from 'react-redux';
 
 const MovieCard = ({ info, data, setData }) => {
+  const getfavList=useSelector((store)=>store.app.FavMovieList)
   const [isFav, setIsFav] = useState(false)
   const navigate = useNavigate();
   const handelMovieDetail = () => {
@@ -43,6 +45,7 @@ const MovieCard = ({ info, data, setData }) => {
   //   }   
   //   getMovieData()
   // }, [])
+  getfavList.map((movie)=>movie.id==info.id)
   return (
     <div className="wrap cursor-pointer relative" onClick={handelMovieDetail}>
       <div className="img-wrap w-52 h-80">
