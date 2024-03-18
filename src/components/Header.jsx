@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSearchQuery } from '../Redux/AppSlice';
 import AddDummyData from './MyList';
 import MyList from './MyList';
+import YourComponent from './Text';
 
 const Header = () => {
     const [popUp, setPopUp] = useState(true);
@@ -38,6 +39,7 @@ const Header = () => {
             </div>
             <ProfilePopUp popUp={popUp} setPopUp={setPopUp} />
             <MyList/>
+            <YourComponent/>
         </div>
     )
 }
