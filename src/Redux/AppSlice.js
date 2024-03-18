@@ -7,7 +7,8 @@ const AppSlice = createSlice({
         userData:[],
         isPopularOn:false,
         isLatestOn:false,
-        searchText:''
+        searchText:'',
+        FavMovieList:[]
     },
     reducers: {
         isAuth: (state) => {
@@ -24,9 +25,12 @@ const AppSlice = createSlice({
         },
         getSearchQuery:(state,action)=>{
              state.searchText=action.payload 
+        },
+        getFavMovie:(state,action)=>{
+           state.FavMovieList.push(action.payload)
         }
     }
 });
 
-export const {isAuth,getUserData,isPopSwitch,isNewSwitch,getSearchQuery} =AppSlice.actions;
+export const {isAuth,getUserData,isPopSwitch,isNewSwitch,getSearchQuery,getFavMovie} =AppSlice.actions;
 export default AppSlice.reducer;

@@ -1,40 +1,33 @@
-import React from 'react';
-import { getAuth } from 'firebase/auth';
-import { getDatabase, ref, set } from 'firebase/database';
+import React, { useEffect } from 'react';
+import { getFirestore, collection, onSnapshot, query } from 'firebase/firestore';
+import { auth } from '../Firebase/Firebase';
 
-const AddDummyData = () => {
-  const addDummyData = async () => {
-    const auth = getAuth();
-    const currentUser = auth.currentUser;
-    
-    if (currentUser) {
-      const userId = currentUser.uid;
-      const database = getDatabase();
-      const userRef = ref(database, `users/${userId}/data`);
-      
-      try {
-        // Dummy data to be added
-        const dummyData = {
-          name: 'Avbhishek Rawt',
-          email: 'john@example.com',
-          age: 30
-        };
-
-        // Set the dummy data for the user
-        await set(userRef, dummyData);
-
-        console.log('Dummy data added successfully.');
-      } catch (error) {
-        console.error('Error adding dummy data:', error);
+const MyList = () => {
+  useEffect(() => {
+    const getDataFromBase = async () => {
+      const db = getFirestore();
+      const currentUser = auth.currentUser;
+      if (currentUser) {
+        const userId = currentUser.uid;
+        const q = query(collection(db, `MoviData/${userId}/data`));
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+          const data = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+          console.log("lk");
+        });
+        return () => unsubscribe();
       }
-    } else {
-      console.log('No user logged in.');
-    }
-  };
+    };
+    getDataFromBase();
+  }, []);
 
   return (
-    <button className='text-white' onClick={addDummyData}>Add Dummy Data</button>
+    <div>
+      {/* Render your data here if needed */}
+    </div>
   );
 };
 
-export default AddDummyData;
+export default MyList;

@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSearchQuery } from '../Redux/AppSlice';
 import AddDummyData from './MyList';
+import MyList from './MyList';
 
 const Header = () => {
     const [popUp, setPopUp] = useState(true);
@@ -36,6 +37,7 @@ const Header = () => {
                 </div>
             </div>
             <ProfilePopUp popUp={popUp} setPopUp={setPopUp} />
+            <MyList/>
         </div>
     )
 }
