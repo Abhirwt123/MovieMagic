@@ -3,49 +3,57 @@ import { useNavigate } from 'react-router-dom'
 import { DUMMY_MOVIE_POSTER } from '../utils/constant';
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
-import { auth, database } from '../Firebase/Firebase';
-import { ref, set, push } from 'firebase/database';
-import { useSelector } from 'react-redux';
+// import { auth, database } from '../Firebase/Firebase';
+// import { ref, set } from 'firebase/database';
+import { useSelector, useDispatch } from 'react-redux';
+import { Client, Databases, Query, ID } from "appwrite";
 
 const MovieCard = ({ info, data, setData }) => {
-  const getfavList=useSelector((store)=>store.app.FavMovieList)
-  const [isFav, setIsFav] = useState(false)
+  const getfavList = useSelector((store) => store.app.FavMovieList)
+  const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
+
+  let movieStringData = JSON.stringify(info)
+  const client = new Client()
+    .setEndpoint("https://cloud.appwrite.io/v1")
+    .setProject("65f9677db27078162d8c")
+  const databases = new Databases(client);
+
   const handelMovieDetail = () => {
     navigate(`/detail/${info.id}`)
   }
+
   const handleFavMovie = async (e) => {
     e.stopPropagation();
-    const currentUser = auth.currentUser;
-    if (currentUser) {
-      const userId = currentUser.uid;
-      const userRef = ref(database, `MovieData/${userId}/data`);
-      try {
-        setData([...data, { movieId: info.id }]);
-        await set(userRef, data);
-        console.log('Movie added to data');
-      } catch (error) {
-        console.error('Error adding movie ID:', error);
-      }
-    } else {
-      console.log('No user logged in');
-    }
-    // data.map((elm) => {
-    //   if (elm.movieId == info.id) {
-    //     setIsFav(!isFav)
-    //     console.log(isFav)
-    //   }
-    // })
+    const promise = databases.createDocument(
+      '65f967ac48b508702782',
+      '65f96fc008ce0a6b0ccc',
+      ID.unique(),
+      { movieInfo: movieStringData }
+    );
+    promise.then(function (response) {
+      console.log(response);
+    }, function (error) {
+      console.log(error);
+    });
   };
-  // useEffect(() => {
-  //   const getMovieData = async () => {
-  //     const data = await fetch('https://moviemagic-96d91-default-rtdb.firebaseio.com/MoviData/CGouUDLjvJcoxGhCujSRdO33PR43/data')
-  //     const json = await data.json();
-  //     console.log(json)
-  //   }   
-  //   getMovieData()
-  // }, [])
-  getfavList.map((movie)=>movie.id==info.id)
+
+  useEffect(() => {
+    const client = new Client()
+      .setEndpoint("https://cloud.appwrite.io/v1")
+      .setProject("65f9677db27078162d8c");
+    const databases = new Databases(client);
+    databases.listDocuments('65f967ac48b508702782', '65f96fc008ce0a6b0ccc')
+      .then(response => {
+        setMovies(response.documents);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }, [handleFavMovie]);
+  //  movies.map((m)=>console.log((m)));
+  const isMovieFavorited = movies.some((data) => JSON.parse(data.movieInfo).id == info.id);
+  // console.log(isMovieFavorited);
   return (
     <div className="wrap cursor-pointer relative" onClick={handelMovieDetail}>
       <div className="img-wrap w-52 h-80">
@@ -61,7 +69,7 @@ const MovieCard = ({ info, data, setData }) => {
         </div>
       </div>
       <div className="markMovie absolute top-1 right-1" onClick={handleFavMovie}>
-        {isFav ? <FaBookmark className='text-4xl text-red-500 ' /> : <CiBookmark className='text-4xl text-red-500 ' />}
+        {isMovieFavorited ? <FaBookmark className='text-4xl text-red-500 ' /> : <CiBookmark className='text-4xl text-red-500 ' />}
       </div>
     </div>
   )

@@ -4,10 +4,11 @@ import SliderComp from './Slider';
 import MovieCard from './MovieCard';
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from 'react-redux';
-import { isNewSwitch } from '../Redux/AppSlice';
+import { getFavMovie, isNewSwitch } from '../Redux/AppSlice';
 
 const Upcoming = () => {
     const [UpcomingMovies, setUpcomingMovies] = useState()
+    const [data, setData] = useState([])
     const dispatch = useDispatch()
     const isOn = useSelector((store) => store.app.isLatestOn);
     const toggleSwitch = () => dispatch(isNewSwitch());
@@ -28,6 +29,9 @@ const Upcoming = () => {
     useEffect(() => {
         getPopularMovies()
     }, [isOn])
+    useEffect(() => {
+        dispatch(getFavMovie(data))
+    }, [data])
     if (!UpcomingMovies) return;
     return (
         <div className="slider-container mb-6">
@@ -37,7 +41,7 @@ const Upcoming = () => {
                     <motion.div className="handle" layout transition={spring} />
                 </div>
                 <p className={`text-4xl ${!isOn ? "text-white" : "text-[#76ABAE]"}`}>Weakly Top TV Series </p> </div>
-            <SliderComp children={UpcomingMovies.map((movie) => <MovieCard key={movie.id} info={movie} />)} />
+            <SliderComp children={UpcomingMovies.map((movie) => <MovieCard data={data} setData={setData} key={movie.id} info={movie} />)} />
         </div>
     )
 }

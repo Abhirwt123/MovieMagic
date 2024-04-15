@@ -5,9 +5,8 @@ import ProfilePopUp from './Profile';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSearchQuery } from '../Redux/AppSlice';
-import AddDummyData from './MyList';
-import MyList from './MyList';
 import YourComponent from './Text';
+import MyList from './MyList';
 
 const Header = () => {
     const [popUp, setPopUp] = useState(true);
@@ -20,9 +19,9 @@ const Header = () => {
         dispatch(getSearchQuery(text))
             navigate('/search')
     }
+
     return (
         <div className='fixed top-0 w-full bg-[#222831] z-50 shadow-2xl'>
-            <AddDummyData/>
             <div className="wrap p-4 flex items-center justify-between">
                 <div className="logo">
                     <p className='text-3xl font-bold text-[#FFE6E6] cursor-pointer' onClick={()=>navigate('/home')}>MovieMagic</p>
@@ -38,7 +37,6 @@ const Header = () => {
                 </div>
             </div>
             <ProfilePopUp popUp={popUp} setPopUp={setPopUp} />
-            <MyList/>
             <YourComponent/>
         </div>
     )

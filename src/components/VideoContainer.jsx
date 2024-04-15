@@ -3,6 +3,7 @@ import PopularMovies from './PopularMovies'
 import Upcoming from './Upcoming'
 import TopRated from './TopRated'
 import Banner from './Banner'
+import MyList from './MyList'
 
 const VideoContainer = () => {
 
@@ -13,6 +14,7 @@ const VideoContainer = () => {
         <PopularMovies />
         <Upcoming />
         <TopRated />
+        <MyList/>
       </div>
     </>
   )

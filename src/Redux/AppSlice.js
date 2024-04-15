@@ -8,7 +8,7 @@ const AppSlice = createSlice({
         isPopularOn:false,
         isLatestOn:false,
         searchText:'',
-        FavMovieList:''
+        FavMovieList:null
     },
     reducers: {
         isAuth: (state) => {
@@ -27,7 +27,7 @@ const AppSlice = createSlice({
              state.searchText=action.payload 
         },
         getFavMovie:(state,action)=>{
-           state.FavMovieList.action.payload
+           state.FavMovieList=action.payload
         }
     }
 });
