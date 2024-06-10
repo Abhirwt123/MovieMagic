@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { API_OPTIONS, PROFILE_ICON } from '../utils/constant';
+import { API_OPTIONS, PROFILE_ICON, TMDB_URLS } from '../utils/constant';
 import { useParams } from 'react-router-dom';
 import SliderComp from './Slider';
 
@@ -22,7 +22,7 @@ const Cast = () => {
                 return (
                     <div key={index} className='wrap flex flex-col items-center'>
                         <div className='img-wrap max-w-36 h-36 rounded-full overflow-hidden'>
-                            <img src={profile.profile_path ? "https://image.tmdb.org/t/p/original/" + profile.profile_path : PROFILE_ICON} alt="img" className='object-cover w-full h-full' />
+                            <img src={profile.profile_path ? TMDB_URLS.imageUrl + profile.profile_path : PROFILE_ICON} alt="img" className='object-cover w-full h-full' />
                         </div>
                         <div className="info">
                             <p className="name pt-2 text-lg text-zinc-400 text-center">{profile.original_name}</p>

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { API_OPTIONS } from '../utils/constant'
+import { API_OPTIONS, TMDB_URLS } from '../utils/constant'
 
 const Banner = () => {
     const [path,setPath]=useState()
     const getMovieBanner =async ()=>{
-        const data =await fetch('https://api.themoviedb.org/3/movie/now_playing',API_OPTIONS);
+        const data =await fetch(TMDB_URLS.nowPlayingMoviesUrl,API_OPTIONS);
         const json = await data.json()
          const RandomNum =Math.floor(Math.random(+1)*20);
         setPath(json.results[RandomNum].backdrop_path)
@@ -13,7 +13,7 @@ const Banner = () => {
      getMovieBanner()
     },[])
     const bannerStyle = {
-        background: `url(https://image.tmdb.org/t/p/original/${path}) no-repeat top / cover`,
+        background: `url(${TMDB_URLS.imageUrl/path}) no-repeat top / cover`,
       };
   return (
     <div className='bg-gradient-to-r from-black to-black'>

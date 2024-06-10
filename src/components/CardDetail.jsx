@@ -14,7 +14,7 @@ const CardDetail = () => {
     const isOn = useSelector((store) => store.app.isPopularOn);
     const mediaType = isOn ? 'tv' : 'movie';
     const mediaInfoUrl = `https://api.themoviedb.org/3/${mediaType}/${params.id}`;
-    
+
     const fetchMediaInfo = async () => {
         const response = await fetch(mediaInfoUrl, API_OPTIONS);
         const data = await response.json();
@@ -42,7 +42,7 @@ const CardDetail = () => {
                     <div className='grid grid-cols-12 px-20 py-6 items-center'>
                         <div className="col-span-4">
                             <div className="img-wrap w-96">
-                                <img src={poster_path?`https://image.tmdb.org/t/p/original/${poster_path}`:DUMMY_MOVIE_POSTER} alt="movie" className='w-full rounded-lg' />
+                                <img src={poster_path ? `https://image.tmdb.org/t/p/original/${poster_path}` : DUMMY_MOVIE_POSTER} alt="movie" className='w-full rounded-lg' />
                             </div>
                         </div>
                         <div className="col-span-7">

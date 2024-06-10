@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { API_OPTIONS } from '../utils/constant';
+import { API_OPTIONS, TMDB_URLS } from '../utils/constant';
 import { useParams } from 'react-router-dom';
 import SliderComp from './Slider';
 import MovieCard from './MovieCard';
@@ -12,7 +12,7 @@ const Recomended = () => {
     const [data, setData] = useState([])
     const params = useParams();
     const getRecomendedData = async () => {
-        const data = await fetch(`https://api.themoviedb.org/3/movie/${params.id}/recommendations`, API_OPTIONS);
+        const data = await fetch(`${TMDB_URLS.casteOrRecommendedUrl/params.id}/recommendations`, API_OPTIONS);
         const json = await data.json();
         setRecomendedList(json.results)
     }

@@ -21,6 +21,7 @@ const SignInForm = () => {
             dispatch(isAuth());
         }
     }, []);
+    
     const handleGoogleAuth = () => {
         signInWithPopup(auth, provider)
             .then((data) => {

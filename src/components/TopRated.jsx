@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { API_OPTIONS } from '../utils/constant';
+import { API_OPTIONS, TMDB_URLS } from '../utils/constant';
 import SliderComp from './Slider';
 import MovieCard from './MovieCard';
 import { getFavMovie } from '../Redux/AppSlice';
@@ -10,7 +10,7 @@ const TopRated = () => {
     const [data, setData] = useState([])
     const dispatch =useDispatch()
     const getPopularMovies = async () => {
-        const data = await fetch('https://api.themoviedb.org/3/movie/top_rated', API_OPTIONS);
+        const data = await fetch(TMDB_URLS.topRatedMoviesUrl, API_OPTIONS);
         const json = await data.json()
         setTopRatedMovies(json.results)
     }

@@ -3,13 +3,9 @@ import { useNavigate } from 'react-router-dom'
 import { DUMMY_MOVIE_POSTER } from '../utils/constant';
 import { CiBookmark } from "react-icons/ci";
 import { FaBookmark } from "react-icons/fa";
-// import { auth, database } from '../Firebase/Firebase';
-// import { ref, set } from 'firebase/database';
-import { useSelector, useDispatch } from 'react-redux';
-import { Client, Databases, Query, ID } from "appwrite";
+import { Client, Databases, ID } from "appwrite";
 
-const MovieCard = ({ info, data, setData }) => {
-  const getfavList = useSelector((store) => store.app.FavMovieList)
+const MovieCard = ({ info }) => {
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
 
@@ -51,9 +47,7 @@ const MovieCard = ({ info, data, setData }) => {
         console.error(error);
       });
   }, [handleFavMovie]);
-  //  movies.map((m)=>console.log((m)));
   const isMovieFavorited = movies.some((data) => JSON.parse(data.movieInfo).id == info.id);
-  // console.log(isMovieFavorited);
   return (
     <div className="wrap cursor-pointer relative" onClick={handelMovieDetail}>
       <div className="img-wrap w-52 h-80">

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { API_OPTIONS } from '../utils/constant'
+import { API_OPTIONS, TMDB_URLS } from '../utils/constant'
 import MovieCard from './MovieCard';
 import Header from './Header';
 import { useSelector } from 'react-redux';
@@ -9,7 +9,7 @@ const SearchMovies = () => {
     const [searchDataList, setSearchDataList] = useState()
     const searchText = useSelector((store) => store.app.searchText)
     const fetchMovies = async () => {
-        const data = await fetch(`https://api.themoviedb.org/3/search/movie?query=${searchText}`, API_OPTIONS);
+        const data = await fetch(`${TMDB_URLS.searchMovieUrl/searchText}`, API_OPTIONS);
         const json = await data.json();
         setSearchDataList(json.results)
     }

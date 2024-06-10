@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { API_OPTIONS } from '../utils/constant';
+import { API_OPTIONS, TMDB_URLS } from '../utils/constant';
 import SliderComp from './Slider';
 import MovieCard from './MovieCard';
 import { motion } from "framer-motion";
@@ -12,8 +12,6 @@ const Upcoming = () => {
     const dispatch = useDispatch()
     const isOn = useSelector((store) => store.app.isLatestOn);
     const toggleSwitch = () => dispatch(isNewSwitch());
-    const upcomingMovUrl = "https://api.themoviedb.org/3/movie/upcoming";
-    const upcomingTvSeriesUrl = "https://api.themoviedb.org/3/tv/on_the_air";
 
     const spring = {
         type: "spring",
@@ -22,7 +20,7 @@ const Upcoming = () => {
     };
 
     const getPopularMovies = async () => {
-        const data = await fetch(isOn ? upcomingTvSeriesUrl : upcomingMovUrl, API_OPTIONS);
+        const data = await fetch(isOn ? TMDB_URLS.upcomingTvSeriesUrl : TMDB_URLS.upcomingMoviesUrl, API_OPTIONS);
         const json = await data.json()
         setUpcomingMovies(json.results)
     }
